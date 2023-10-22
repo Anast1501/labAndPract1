@@ -4,27 +4,27 @@ import( //импортирование двух пакетов: errors для с
 	"errors" 
 )
 
-//Node - это структура, представляющая элемент (узел) стека. Узел содержит два поля: next, которое указывает на следующий узел в стеке, и val, которое хранит целочисленное значение элемента стека.
-type Node struct{ //стековая структура
-	next *Node
-	val string //значения типа int
+//SNode - это структура, представляющая элемент (узел) стека. Узел содержит два поля: next, которое указывает на следующий узел в стеке, и val, которое хранит целочисленное значение элемента стека.
+type SNode struct{ //стековая структура
+	next *SNode
+	val string //значения типа string
 }
 
 //Стек
 type Stack struct{ 
-	head *Node
+	head *SNode
 }
 
 //Push добавляет новый элемент в стек
-func (s *Stack) Push(value string) {
-	newNode := &Node{
-		val:  value,
+func (s *Stack) SPush(value string) {
+	newNode := &SNode{
+		val: value,
 		next: s.head,
 	}
 	s.head = newNode
 }
 //Pop удаляет и возвращает верхний элемент стека
-func (s *Stack) Pop() (string, error) {
+func (s *Stack) SPop() (string, error) {
 	if s.IsEmpty(){
 		return "", errors.New("Stack is empty") //вызов проверки на пустоту стека
 	}

@@ -56,7 +56,7 @@ func (hmap *HashMap) Insert(key string, value string) error {
 
 //Метод Get получает значение по ключу из хеш-таблицы
 //Если ключ не найден, то он возвращает ошибку 
-func (hmap *HashMap) Get(key string) (string, error) {
+func (hmap *HashMap) HGet(key string) (string, error) {
 	hash, err := calcHash(key, len(hmap.table))
 	if err != nil {
 		return "", errors.New("unacceptable key")
@@ -74,7 +74,7 @@ func (hmap *HashMap) Get(key string) (string, error) {
 
 //Метод Del удаляет элемент из хеш-таблицы по ключу
 //Если ключ не найден, то он возвращает ошибку
-func (hmap *HashMap) Del(key string) error {
+func (hmap *HashMap) HDel(key string) error {
 	hash, err := calcHash(key, len(hmap.table))
 	if err != nil {
 		return errors.New("unacceptable key")
@@ -95,32 +95,5 @@ func (hmap *HashMap) Del(key string) error {
 	return errors.New("no such key")
 }
 
-/*
-func main() {
-	// Создаем экземпляр HashMap
-	hmap := HashMap{}
 
-	// Вставляем пару ключ-значение
-	err := hmap.Insert("n1", "a")
-	if err != nil {
-		fmt.Println("Ошибка при вставке:", err)
-	}
 
-	err = hmap.Insert("n2", "b")
-	if err != nil {
-		fmt.Println("Ошибка при вставке:", err)
-	}
-
-	err = hmap.Insert("n3", "c")
-	if err != nil {
-		fmt.Println("Ошибка при вставке:", err)
-	}
-
-	// Выводим все элементы через цикл
-	for i := 0; i < len(hmap.table); i++ {
-		if hmap.table[i] != nil {
-			fmt.Printf("Ключ: %s, Значение: %s\n", hmap.table[i].key, hmap.table[i].value)
-		}
-	}
-}
-*/

@@ -1,5 +1,5 @@
 package main
-import( //импортирование двух пакетов: errors для создания и возврата ошибок и fmt для вывода информации на консоль.
+import( //импортирование 1 пакета: errors для создания и возврата ошибок
 	"errors" 
 )
 
@@ -15,13 +15,13 @@ func NewArray() *Array {
 }
 
 //Append добавляет элемент в конец массива
-func (arr *Array) Append(value string) {
+func (arr *Array) ArAdd(value string) {
 	arr.data = append(arr.data, value)
 	arr.length++
 }
 
 //Get возвращает элемент по индексу
-func (arr *Array) Get(index int) (string, error){
+func (arr *Array) AGet(index int) (string, error){
 	if index<0 || index>= arr.length{
 		return "0", errors.New("Index out of range")
 }
@@ -29,7 +29,7 @@ return arr.data[index], nil
 }
 
 //Set устанавливает значение элемента по индексу 
-func (arr *Array) Set(index int, value string) error{
+func (arr *Array) ASet(index int, value string) error{
 	if index < 0|| index >= arr.length{
 		return errors.New("Index out of range")
 }
@@ -38,12 +38,12 @@ return nil
 }
 
 //Length возвращает текущую длину массива
-func (arr *Array) Length() int{
+func (arr *Array) ALength() int{
 	return arr.length
 }
 
 //Удаление элементов массива и смещение 
-func (arr *Array) Delete(index int) string{
+func (arr *Array) ADel(index int) string{
 	if index > 0 && index < arr.length{
 		deletedValue:=arr.data[index] //Сохраняем значение элемента
 		copy(arr.data[index:], arr.data[index+1:]) //Смещаем элементы влево на одну позицию
@@ -53,6 +53,4 @@ func (arr *Array) Delete(index int) string{
 	}
 	return "index not found"
 }
-
-
 

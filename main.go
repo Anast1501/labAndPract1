@@ -5,43 +5,42 @@ import(
 )
 func main(){
 
-	stack:=&Stack{} //создаём новый стек
+	stack:=Stack{} //создаём новый стек
 
 	//Пример использования стека
-	stack.Push("1")
-	stack.Push("2")
-	stack.Push("3")
+	stack.SPush("1")
+	stack.SPush("2")
+	stack.SPush("3")
 
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
-	fmt.Println(stack.Pop())
+	fmt.Println(stack.SPop())
+	fmt.Println(stack.SPop())
+	fmt.Println(stack.SPop())
+	fmt.Println(stack.SPop())
 	fmt.Println(" ")
 
 
-	queue:=&Queue{} //создание новой очереди
+	queue:=Queue{} //создание новой очереди
 
 	//Пример использования очереди
-	queue.Enqueue("1")
-	queue.Enqueue("2") 
-	queue.Enqueue("3")
+	queue.Qpop("1")
+	queue.Qpop("2") 
+	queue.Qpop("3")
 
-	fmt.Println(queue.Dequeue())
-	fmt.Println(queue.Dequeue())
-	fmt.Println(queue.Dequeue())
-	fmt.Println(queue.Dequeue())
+	fmt.Println(queue.Qdel())
+	fmt.Println(queue.Qdel())
+	fmt.Println(queue.Qdel())
+	fmt.Println(queue.Qdel())
 
-	fmt.Println("")
-	
+
 	arr:=NewArray() //создание нового массива //правильный порядок массива и ограничение
 
 		//Пример использования массива
-		arr.Append("1")
-		arr.Append("2")
-		arr.Append("3")
+		arr.ArAdd("1")
+		arr.ArAdd("2")
+		arr.ArAdd("3")
 	
-		for i:=0; i<arr.Length(); i++{
-			value, err:=arr.Get(i)
+		for i:=0; i<arr.ALength(); i++{
+			value, err:=arr.AGet(i)
 			if err!=nil{
 				fmt.Println("Error:", err)
 				break
@@ -50,13 +49,13 @@ func main(){
 		}
 	
 		//Изменение элемента по индексу (меняем значение по индексу)
-		err:=arr.Set(1,"99")
+		err:=arr.ASet(1,"99")
 		if err !=nil{
 			fmt.Println("Error:", err)
 		}
 	
 		//Вывод элемента после изменения 
-		value, err:=arr.Get(1)
+		value, err:=arr.AGet(1)
 		if err!=nil {
 			fmt.Println("Error:", err)
 		} else{
@@ -65,7 +64,6 @@ func main(){
 
 		// Создаем экземпляр HashMap
 	hmap := HashMap{}
-	fmt.Println("")
 
 	// Вставляем пару ключ-значение
 	err = hmap.Insert("n1", "a")
@@ -89,4 +87,37 @@ func main(){
 			fmt.Printf("Ключ: %s, Значение: %s\n", hmap.table[i].key, hmap.table[i].value)
 		}
 	}
+
+	sll := LinkedList{} //создание нового односвязного списка
+
+	// Пример использования односвязного списка
+	sll.LSAdd("A")
+	sll.LSAdd("B")
+	sll.LSAdd("C")
+
+	sll.LSDisplay()
+
+	err = sll.LSDel("B")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	sll.LSDisplay() //отображение списка 
+
+
+	dll := DoublyLinkedList{} //создание двусвязного списка
+
+	// Пример использования двусвязного списка
+	dll.LDAdd("X")
+	dll.LDAdd("Y")
+	dll.LDAdd("Z")
+
+	dll.LDDisplay()
+
+	err = dll.LDDel("Y")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	dll.LDDisplay()
 	}

@@ -31,7 +31,8 @@ func main(){
 	fmt.Println(queue.Dequeue())
 	fmt.Println(queue.Dequeue())
 
-
+	fmt.Println("")
+	
 	arr:=NewArray() //создание нового массива //правильный порядок массива и ограничение
 
 		//Пример использования массива
@@ -64,9 +65,10 @@ func main(){
 
 		// Создаем экземпляр HashMap
 	hmap := HashMap{}
+	fmt.Println("")
 
 	// Вставляем пару ключ-значение
-	err := hmap.Insert("n1", "a")
+	err = hmap.Insert("n1", "a")
 	if err != nil {
 		fmt.Println("Ошибка при вставке:", err)
 	}

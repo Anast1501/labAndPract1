@@ -54,3 +54,4 @@ func (arr *Array) ADel(index int) string{
 	return "index not found"
 }
 
+

@@ -4,37 +4,37 @@ import( //импортирование двух пакетов: errors для с
 	"errors" 
 )
 
-//SNode - это структура, представляющая элемент (узел) стека. Узел содержит два поля: next, которое указывает на следующий узел в стеке, и val, которое хранит целочисленное значение элемента стека.
+//SNode - это структура, представляющая элемент (узел) стека. Узел содержит два поля: next, которое указывает на следующий узел в стеке, и val, которое хранит целочисленное (строковые) значение элемента стека.
 type SNode struct{ //стековая структура
-	next *SNode
-	val string //значения типа string
+	next *SNode //указатель на следующий узел в стеке
+	val string //значения типа string , хранящиеся в элементе стека
 }
 
 //Стек
 type Stack struct{ 
-	head *SNode
+	head *SNode        //head - одно поле, которое указывает на верхний элемент стека
 }
 
 //Push добавляет новый элемент в стек
 func (s *Stack) SPush(value string) {
-	newNode := &SNode{
+	newNode := &SNode{ 
 		val: value,
 		next: s.head,
 	}
-	s.head = newNode
+	s.head = newNode   //обновление вершины стека на новый узел
 }
 //Pop удаляет и возвращает верхний элемент стека
 func (s *Stack) SPop() (string, error) {
 	if s.IsEmpty(){
 		return "", errors.New("Stack is empty") //вызов проверки на пустоту стека
 	}
-	value:=s.head.val
-	s.head=s.head.next
-	return value, errors.New("")
+	value:=s.head.val  //сохранение значение верхнего элемента стека
+	s.head=s.head.next //обновление вершины стека
+	return value, errors.New("") //возврат значения
 }
 
 //IsEmpty возвращает true, если стек пуст, иначе false 
 func (s *Stack) IsEmpty() bool{
-	return s.head == nil
+	return s.head == nil  //если равны, то стек считается пустым => true
 }
 

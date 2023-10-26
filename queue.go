@@ -3,17 +3,17 @@ package main
 import( //импортирование двух пакетов: errors для создания и возврата ошибок и fmt для вывода информации на консоль.
 	"errors" 
 )
-type QNode struct{ //стековая структура
-	next *QNode
-	val string //значения типа string
+type QNode struct{ //стековая структура (представляет элемент/узел в очереди)
+	next *QNode //указатель на след. узел в очереди
+	val string //значения типа string , хранящая в элементе очереди
 }
 //Очередь 
 type Queue struct{
-	front *QNode
-	rear *QNode
+	front *QNode //указатель на первый элемент в очереди (голову)
+	rear *QNode //указатель на последний элемент в очереди (хвост)
 }
 //Enqueue добавляет новый элемент в конец очереди
-func (q *Queue) Qpop(value string){
+func (q *Queue) Qpush(value string){
 	newNode:=&QNode{
 		val: value, 
 		next: nil,
@@ -28,12 +28,12 @@ func (q *Queue) Qpop(value string){
 	}
 	}
 	//Dequeue удаляет и возвращает элемент из начала очереди
-	func(q *Queue) Qdel() (string, error){
+	func(q *Queue) Qpop() (string, error){
 		if q.IsEmpty(){
 			return "", errors.New("Queue is empty")
 	}
 
-	value:=q.front.val
+	value:=q.front.val	
 	q.front=q.front.next
 
 	if q.front==nil{

@@ -22,14 +22,14 @@ func main(){
 	queue:=Queue{} //создание новой очереди
 
 	//Пример использования очереди
-	queue.Qpop("1")
-	queue.Qpop("2") 
-	queue.Qpop("3")
+	queue.Qpush("1")
+	queue.Qpush("2") 
+	queue.Qpush("3")
 
-	fmt.Println(queue.Qdel())
-	fmt.Println(queue.Qdel())
-	fmt.Println(queue.Qdel())
-	fmt.Println(queue.Qdel())
+	fmt.Println(queue.Qpop())
+	fmt.Println(queue.Qpop())
+	fmt.Println(queue.Qpop())
+	fmt.Println(queue.Qpop())
 
 
 	arr:=NewArray() //создание нового массива //правильный порядок массива и ограничение
@@ -120,4 +120,40 @@ func main(){
 	}
 
 	dll.LDDisplay()
+
+
+	tree := NewFullBinaryTree() //создание нового дерева
+	tree.Insert(5)
+	tree.Insert(3)
+	tree.Insert(7)
+	tree.Insert(2)
+	tree.Insert(4)
+	tree.Insert(6)
+	tree.Insert(8)
+	isFull := isFullBinaryTree(tree.Root) //проверка на полноту бинарности дерева 
+    if isFull {
+        fmt.Println("Дерево является полным бинарным деревом.")
+    } else {
+        fmt.Println("Дерево не является полным бинарным деревом.")
+    }
+
+
+	PrintTree(tree.Root,"",true)
+
+//Поиск элементтов в дереве
+	fmt.Println("Search for 3:", tree.Search(3)) 
+	fmt.Println("Search for 9:", tree.Search(9))
+
+	//Удаление элемента в дереве
+	tree.Delete(3)
+	fmt.Println("After deleting 3:")
+	
+	PrintTree(tree.Root,"",true) //вывод дерева
+
+	isFull = isFullBinaryTree(tree.Root) //проверка на полноту бинарности дерева
+    if isFull {
+        fmt.Println("Дерево является полным бинарным деревом.")
+    } else {
+        fmt.Println("Дерево не является полным бинарным деревом.")
+    }
 	}

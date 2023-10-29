@@ -32,14 +32,23 @@ func main(){
 	fmt.Println(queue.Qpop())
 
 
-	arr:=NewArray() //создание нового массива //правильный порядок массива и ограничение
+	arr:=NewArray(5) //создание нового массива //правильный порядок массива и ограничение
 
 		//Пример использования массива
 		arr.ArAdd("1")
 		arr.ArAdd("2")
 		arr.ArAdd("3")
-	
-		for i:=0; i<arr.ALength(); i++{
+		arr.ArAdd("4")
+		arr.ArAdd("5")
+		
+		
+	//Вызов вывода
+		arr.ArrPrint()
+
+		arr.ADel(1)
+		fmt.Println("")
+		arr.ArrPrint()
+		/*for i:=0; i<arr.ALength(); i++{
 			value, err:=arr.AGet(i)
 			if err!=nil{
 				fmt.Println("Error:", err)
@@ -47,26 +56,24 @@ func main(){
 			}
 			fmt.Println("Element at index", i, ":", value)
 		}
-	
+	*/
 		//Изменение элемента по индексу (меняем значение по индексу)
-		err:=arr.ASet(1,"99")
-		if err !=nil{
-			fmt.Println("Error:", err)
-		}
-	
+		arr.ASet(0,"99")
+		fmt.Println("")
+		arr.ArrPrint()
+		fmt.Println("")
 		//Вывод элемента после изменения 
-		value, err:=arr.AGet(1)
-		if err!=nil {
-			fmt.Println("Error:", err)
-		} else{
-			fmt.Println("Updated element at index 1:", value)
-		}
+		fmt.Println(arr.AGet(0))
+
+
+
+
 
 		// Создаем экземпляр HashMap
 	hmap := HashMap{}
 
 	// Вставляем пару ключ-значение
-	err = hmap.Insert("n1", "a")
+	err:= hmap.Insert("n1", "a")
 	if err != nil {
 		fmt.Println("Ошибка при вставке:", err)
 	}
@@ -129,6 +136,8 @@ func main(){
 	tree.Insert(2)
 	tree.Insert(4)
 	tree.Insert(6)
+	tree.Insert(8)
+	tree.Insert(8)
 	tree.Insert(8)
 	isFull := isFullBinaryTree(tree.Root) //проверка на полноту бинарности дерева 
     if isFull {

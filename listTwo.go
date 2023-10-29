@@ -9,8 +9,8 @@ import (
 // LDNode представляет узел двусвязного списка.
 type LDNode struct {
     data string
-    next *LDNode
-    prev *LDNode
+    next *LDNode //ссылка на след. элемент
+    prev *LDNode //ссылка на предыдущий элемент
 }
 
 // DoublyLinkedList представляет двусвязный список.

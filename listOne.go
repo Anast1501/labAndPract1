@@ -60,6 +60,29 @@ func (ll *LinkedList) LSDel(data string) error {
 
     return errors.New("Data not found in the list")
 }
+//удаление с хвоста!!!!!!!
+
+func (ll *LinkedList) LSDeleteTail() error {
+    //Проверка на пустоту списка
+    if ll.head == nil {
+        return errors.New("List is empty")
+    }
+    //Если в списке только один узел, удаляем его и делаем голову nil
+    if ll.head.next == nil {
+        ll.head = nil
+        return nil
+}
+
+//Иначе, ищем предпоследний узел 
+current := ll.head
+for current.next.next != nil {
+    current = current.next
+}
+//Удаляем последний узел
+current.next = nil
+return nil
+}
+//cтоп
 
 // Display выводит содержимое списка.
 func (ll *LinkedList) LSDisplay() {

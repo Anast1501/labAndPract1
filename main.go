@@ -11,6 +11,7 @@ func main(){
 	stack.SPush("1")
 	stack.SPush("2")
 	stack.SPush("3")
+	
 
 	fmt.Println(stack.SPop())
 	fmt.Println(stack.SPop())
@@ -30,6 +31,7 @@ func main(){
 	fmt.Println(queue.Qpop())
 	fmt.Println(queue.Qpop())
 	fmt.Println(queue.Qpop())
+	fmt.Println(" ")
 
 
 	arr:=NewArray(5) //создание нового массива //правильный порядок массива и ограничение
@@ -40,6 +42,7 @@ func main(){
 		arr.ArAdd("3")
 		arr.ArAdd("4")
 		arr.ArAdd("5")
+		//arr.ADel(2) //Удаление по индексу
 		
 		
 	//Вызов вывода
@@ -60,10 +63,11 @@ func main(){
 		//Изменение элемента по индексу (меняем значение по индексу)
 		arr.ASet(0,"99")
 		fmt.Println("")
-		arr.ArrPrint()
+		arr.ArrPrint() //вывод массива
 		fmt.Println("")
 		//Вывод элемента после изменения 
 		fmt.Println(arr.AGet(0))
+		fmt.Println(" ")
 
 
 
@@ -83,17 +87,50 @@ func main(){
 		fmt.Println("Ошибка при вставке:", err)
 	}
 
+	err = hmap.Insert("n2", "ссс")
+	if err != nil {
+		fmt.Println("Ошибка при вставке:", err)
+	}
+
+	err = hmap.Insert("2n", "dddd")
+	if err != nil {
+		fmt.Println("Ошибка при вставке:", err)
+	}
+
 	err = hmap.Insert("n3", "c")
 	if err != nil {
 		fmt.Println("Ошибка при вставке:", err)
 	}
 
+	//Выводим все  элементы через цикл
+	for i:=0; i<len(hmap.table); i++ {
+		if hmap.table[i]!=nil {
+			fmt.Printf("Ключ: %s, Значение: %s\n", hmap.table[i].key, hmap.table[i].value)
+		}
+	}
+
+	fmt.Println(" ")
+
+	//Получаем значение по ключу n2 перед удалением 
+	value, err := hmap.HGet("n2")
+	if err == nil{
+		fmt.Println("Ошибка при получении значения:", err)
+	} else {
+		fmt.Println("Значение для ключа n2 перед удалением ", value)
+	}
+
+
+	hmap.HDel("n2")     //перед удалением get!!!!
+
 	// Выводим все элементы через цикл
 	for i := 0; i < len(hmap.table); i++ {
 		if hmap.table[i] != nil {
 			fmt.Printf("Ключ: %s, Значение: %s\n", hmap.table[i].key, hmap.table[i].value)
+	
 		}
 	}
+	fmt.Println(" ")
+
 
 	sll := LinkedList{} //создание нового односвязного списка
 
@@ -104,12 +141,21 @@ func main(){
 
 	sll.LSDisplay()
 
-	err = sll.LSDel("B")
+	err = sll.LSDel("C")
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	sll.LSDisplay() //отображение списка 
+
+	//Удаляем последний узел (с хвоста)
+	err = sll.LSDeleteTail()
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	sll.LSDisplay() //отображение списка после удаления с хвоста
+	fmt.Println(" ")
 
 
 	dll := DoublyLinkedList{} //создание двусвязного списка
@@ -118,15 +164,22 @@ func main(){
 	dll.LDAdd("X")
 	dll.LDAdd("Y")
 	dll.LDAdd("Z")
-
+	//dll.LDDel("Y")
+//добавление в голову и удаление в хвост!!!!!! + удаление
+	dll.LDDisplay() //выводит двусвязный список
+	dll.LDAddHead("bgf")
 	dll.LDDisplay()
 
+	dll.LDDelTail()
+	dll.LDDelHead()
+	dll.LDDisplay()
 	err = dll.LDDel("Y")
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	dll.LDDisplay()
+	fmt.Println(" ")
 
 
 	tree := NewFullBinaryTree() //создание нового дерева

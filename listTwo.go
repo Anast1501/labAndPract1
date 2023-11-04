@@ -19,6 +19,39 @@ type DoublyLinkedList struct {
     tail *LDNode
 }
 
+//LDAddHead добавляет новый узел с данными в начало списка 
+func (dll *DoublyLinkedList) LDAddHead(data string) {
+    //Создание нового узла 
+    newNode:=&LDNode{data: data, next: dll.head, prev: nil}
+    //Если список пуст, устанавливаем новый узел как головой и хвостовой узел
+    if dll.head == nil {
+        dll.head = newNode
+        dll.tail = newNode
+    } else {
+        dll.head.prev = newNode
+        dll.head = newNode
+    }
+}
+
+//LDDelHead удаляет узел из начала списка
+func (dll *DoublyLinkedList) LDDelHead() error {
+    if dll.head==nil {
+        return errors.New("list is empty")
+}
+
+//Если удаляемый узел является единственный в списке
+if dll.head == dll.tail {
+    dll.head=nil
+    dll.tail=nil
+    return nil
+}
+
+dll.head = dll.head.next
+dll.head.prev = nil
+return nil
+}
+
+
 // Add добавляет новый узел с заданными данными в конец списка.
 func (dll *DoublyLinkedList) LDAdd(data string) {
     // Создаем новый узел
@@ -33,7 +66,27 @@ func (dll *DoublyLinkedList) LDAdd(data string) {
     }
 }
 
-// Remove удаляет узел с указанными данными из списка.
+//LDDelTail удаляет узел с конца списка
+func (dll *DoublyLinkedList) LDDelTail() error {
+    if dll.tail == nil {
+        return errors.New("List is empty")
+    }
+
+    // Если удаляемый узел - единственный в списке
+    if dll.head == dll.tail {
+        dll.head = nil
+        dll.tail = nil
+        return nil
+    }
+
+    // Удаление последнего элемента
+    prevTail := dll.tail.prev
+    prevTail.next = nil
+    dll.tail = prevTail
+    return nil
+}
+
+// Remove удаляет узел с указанными данными из списка. (по значению)
 func (dll *DoublyLinkedList) LDDel(data string) error {
     current := dll.head
     for current != nil {

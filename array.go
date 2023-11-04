@@ -18,7 +18,7 @@ func NewArray(size int) Array {
 }
 
 //Append добавляет элемент в конец массива
-func (arr *Array) ArAdd(value string) string{// ИСПРАВИТЬ(В ВК НАПИСАННО)
+func (arr *Array) ArAdd(value string) string{
 	for i:=0; i<len(arr.data); i++{
 		if arr.data[i] == ""{
 			arr.data[i] = value

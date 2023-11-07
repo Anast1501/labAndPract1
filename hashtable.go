@@ -62,11 +62,11 @@ func (hmap *HashMap) HGet(key string) (string, error) {
 		return "", errors.New("unacceptable key")
 	}
 	if hmap.table[hash] != nil && hmap.table[hash].key == key {
-		return hmap.table[hash].value, nil
+		return hmap.table[hash].value, errors.New("")
 	}
 	for i := (hash + 1) % len(hmap.table); i != hash; i = (i + 1) % len(hmap.table) {
 		if hmap.table[i] != nil && hmap.table[i].key == key {
-			return hmap.table[i].value, nil
+			return hmap.table[i].value, errors.New("")   
 		}
 	}
 	return "", errors.New("no such key")
@@ -104,5 +104,3 @@ func (hmap *HashMap) HDel(key string) error {
 
 
 
-//массив должен быть внутри структуры 
-//таблица не должна быть в main

@@ -50,7 +50,7 @@ for {
 		fmt.Println(set.SetContains(input))
 	case "SETPRINT":
 		set.SetPrint()
+		fmt.Println("")
 	}
-}
-
+	}
 }
